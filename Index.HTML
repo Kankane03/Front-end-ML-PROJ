@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload a Video</title>
+    <style>
+        body {
+            background-color: #ffffcc; /* Yellow background color */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            border: 2px solid #000; /* Black border */
+        }
+
+        .upload-container {
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            text-align: center;
+            border: 2px solid #000; /* Black border */
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-label {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #3498db;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .file-label:hover {
+            background-color: #2980b9;
+        }
+
+        .upload-button-container {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .upload-button-container button {
+            padding: 15px 30px;
+            background-color: #2ecc71;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .upload-button-container button:hover {
+            background-color: #27ae60;
+        }
+
+        .transcription {
+            font-size: 16px;
+            color: #555;
+            margin-top: 20px;
+        }
+
+        .download-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .download-link:hover {
+            color: #2980b9;
+        }
+
+        .note {
+            font-size: 14px;
+            color: #777;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="upload-container">
+    <h1>Upload Your Video</h1>
+    <form class="upload-form" method="post" enctype="multipart/form-data">
+        <input type="file" id="file" class="file-input" name="file" accept="video/*" onchange="showUploadButton()">
+        <label class="file-label" for="file">Choose Video File</label>
+        <div class="upload-button-container" id="uploadButtonContainer">
+            <button type="submit" class="upload-button">Upload Now</button>
+        </div>
+    </form>
+    <p class="transcription">Transcription: <span>{{ transcription }}</span></p>
+    <a class="download-link" href="{{ url_for('download', filename=file) }}" target="_blank">Upload Video</a>
+    <p class="note">Supported formats: MP4, AVI, MOV, MKV</p>
+</div>
+
+<script>
+    function showUploadButton() {
+        document.getElementById('uploadButtonContainer').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
